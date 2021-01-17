@@ -14,18 +14,14 @@
 
 # syntax = docker/dockerfile:1-experimental
 
-FROM --platform=${BUILDPLATFORM} golang:1.15 as base
+FROM  golang:1.15 as base
 WORKDIR /src
 ENV CGO_ENABLED=0
 COPY go.* .
-RUN go mod download
 COPY . .
 
 FROM base AS build
-ARG TARGETOS
-ARG TARGETARCH
-RUN --mount=type=cache,target=/root/.cache/go-build \
-  GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -o /out/scorecard .
+RUN go build -o /out/scorecard .
 
 FROM gcr.io/distroless/base:nonroot
 COPY --from=build /out/scorecard /
