@@ -1,0 +1,28 @@
+# .goreleaser.yml
+project_name: scorecard
+builds:
+  - env: [CGO_ENABLED=0]
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - amd64
+dockers:
+- image_templates: ["ghcr.io/naveensrinivasan/scorecard:{{ .Version }}-amd64"]
+  binaries: [scorecard]
+  dockerfile: Dockerfile
+  use_buildx: true
+  build_flag_templates:
+  - --platform=linux/amd64
+  - --label=org.opencontainers.image.title={{ .ProjectName }}
+  - --label=org.opencontainers.image.description={{ .ProjectName }}
+  - --label=org.opencontainers.image.url=https://github.com/naveensrinivasan/scorecard
+  - --label=org.opencontainers.image.source=https://github.com/naveensrinivasan/scorecard
+  - --label=org.opencontainers.image.version={{ .Version }}
+  - --label=org.opencontainers.image.revision={{ .FullCommit }}
+  - --label=org.opencontainers.image.licenses=MIT
+docker_manifests:
+- name_template: ghcr.io/naveensrinivasan/scorecard:{{ .Version }}
+  image_templates:
+  - ghcr.io/naveensrinivasan/scorecard:{{ .Version }}-amd64

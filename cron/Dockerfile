@@ -11,18 +11,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+FROM golang:1.15 as app
+COPY . /go/src/github.com/ossf/scorecard
+WORKDIR /go/src/github.com/ossf/scorecard
+RUN [ "go", "build", "."]
 
-# syntax = docker/dockerfile:1-experimental
-
-FROM  golang:1.15 as base
-WORKDIR /src
-ENV CGO_ENABLED=0
-COPY go.* .
-COPY . .
-
-FROM base AS build
-RUN go build -o /out/scorecard .
-
-FROM gcr.io/distroless/base:nonroot
-COPY --from=build /out/scorecard /
-ENTRYPOINT [ "/scorecard" ]
+FROM gcr.io/cloud-builders/gsutil
+WORKDIR /go/src/github.com/ossf/scorecard
+COPY --from=app /go/src/github.com/ossf/scorecard /go/src/github.com/ossf/scorecard
+ENTRYPOINT [ "./scorecard" ]
