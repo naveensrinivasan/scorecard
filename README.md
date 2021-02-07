@@ -3,6 +3,7 @@
 ![build](https://github.com/ossf/scorecard/workflows/build/badge.svg?branch=main)
 ![golangci-lint](https://github.com/ossf/scorecard/workflows/golangci-lint/badge.svg?branch=main)
 ![CodeQL](https://github.com/ossf/scorecard/workflows/CodeQL/badge.svg?branch=main)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fnaveensrinivasan%2Fscorecard.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fnaveensrinivasan%2Fscorecard?ref=badge_shield)
 
 <img align="right" src="artwork/openssf_security.png" width="200" height="400">
 
@@ -200,3 +201,7 @@ If you want to get involved or have ideas you'd like to chat about, we discuss t
 See the [Community Calendar](https://calendar.google.com/calendar?cid=czYzdm9lZmhwNWk5cGZsdGI1cTY3bmdwZXNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ) for the schedule and meeting invitations.
 
 See the [Contributing](CONTRIBUTING.md) documentation for guidance on how to contribute.
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fnaveensrinivasan%2Fscorecard.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fnaveensrinivasan%2Fscorecard?ref=badge_large)
