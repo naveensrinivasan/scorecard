@@ -22,6 +22,10 @@ on:
 jobs:
   goreleaser:
     runs-on: ubuntu-latest
+    permissions:
+     contents: write
+     packages: write
+     deployments: write
     steps:
       -
         name: Checkout
