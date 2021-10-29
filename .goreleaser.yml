@@ -16,10 +16,14 @@ flags:
  # or a plain import path (when using GOPATH).
     - -trimpath
     - -tags=netgo
-
 - id: linux
   binary: scorecard-linux-{{ .Arch }}
   no_unique_dist_dir: true
+  # Set the modified timestamp on the output binary, typically
+  # you would do this to ensure a build was reproducible. Pass
+  # empty string to skip modifying the output.
+  # Default is empty string.
+  mod_timestamp: {{ .CommitTimestamp }}
   goos:
     - linux
   goarch:
@@ -33,6 +37,11 @@ flags:
 - id: darwin
   binary: scorecard-darwin-{{ .Arch }}
   no_unique_dist_dir: true
+  # Set the modified timestamp on the output binary, typically
+  # you would do this to ensure a build was reproducible. Pass
+  # empty string to skip modifying the output.
+  # Default is empty string.
+  mod_timestamp: '{{ .CommitTimestamp }}'
   goos:
     - darwin
   goarch:
@@ -44,6 +53,11 @@ flags:
 - id: windows
   binary: scorecard-windows-{{ .Arch }}
   no_unique_dist_dir: true
+  # Set the modified timestamp on the output binary, typically
+  # you would do this to ensure a build was reproducible. Pass
+  # empty string to skip modifying the output.
+  # Default is empty string.
+  mod_timestamp: '{{ .CommitTimestamp }}'
   goos:
     - windows
   goarch:
