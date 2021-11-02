@@ -3,6 +3,7 @@ env:
   - GO111MODULE=on
   # https://stackoverflow.com/a/62821358/19407
   - CGO_ENABLED=0
+  - COSIGN_EXPERIMENTAL=1
 before:
   hooks:
     - go mod download
@@ -33,6 +34,9 @@ builds:
     - arm
   ldflags:
     - -s {{.Env.VERSION_LDFLAGS}} 
+  hooks:
+    post: 
+      - "cosign sign-blob {{ .Path }} --output  dist/{{ .ProjectName }}_{{ .Version }}_{{ .Target }}.sig"
 
 - id: darwin
   binary: scorecard-darwin-{{ .Arch }}
