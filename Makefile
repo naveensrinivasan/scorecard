@@ -13,6 +13,7 @@ OUTPUT = output
 PLATFORM="linux/amd64,linux/arm64,linux/386,linux/arm"
 LDFLAGS=$(shell ./scripts/version-ldflags)
 KOCACHE_PATH=/tmp/ko
+KO_PREFIX ?= naveensrinivasan/scorecard
 
 define create_kocache_path
   mkdir -p $(KOCACHE_PATH)
@@ -136,7 +137,8 @@ validate-docs: docs/checks/internal/generate/main.go
 	# Validating checks.yaml
 	go run ./docs/checks/internal/validate/main.go
 
-build-scorecard: ## Runs go build on repo
+build-scorecard: scorecard-ko
+	## Runs go build on repo
 	# Run go build and generate scorecard executable
 	CGO_ENABLED=0 go build -trimpath -a -tags netgo -ldflags '$(LDFLAGS)'
 
@@ -200,9 +202,8 @@ ko-build-everything: $(ko-targets)
 
 scorecard-ko:
 	$(call create_kocache_path)
-	KO_DATA_DATE_EPOCH=$(SOURCE_DATE_EPOCH) KO_DOCKER_REPO=${KO_PREFIX}/scorecard LDFLAGS="$(LDFLAGS)" \
+	KO_DATA_DATE_EPOCH=$(SOURCE_DATE_EPOCH) LDFLAGS="$(LDFLAGS)" \
 	KO_CACHE=$(KOCACHE_PATH) ko build -B \
-			   --push=false \
 			   --sbom=none \
 			   --platform=$(PLATFORM)\
 			   --tags latest,$(GIT_VERSION),$(GIT_HASH) github.com/ossf/scorecard/v4

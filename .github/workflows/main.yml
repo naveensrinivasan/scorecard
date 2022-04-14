@@ -16,6 +16,8 @@ name: build
 
 permissions:
   contents: read
+  id-token: write
+  packages: write
 
 on:
   push:
@@ -213,7 +215,6 @@ jobs:
        uses: step-security/harden-runner@bdb12b622a910dfdc99a31fdfe6f45a16bc287a4 # v1
        with:
          egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
-
      - name: Install Protoc
        uses: arduino/setup-protoc@64c0c85d18e984422218383b81c52f8b077404d3 # v1.1.2
        with:
@@ -238,6 +239,7 @@ jobs:
        uses: actions/setup-go@f6164bd8c8acb4a71fb2791a8b6c4024ff038dab # v2.2.0
        with:
          go-version: ${{ env.GO_VERSION }}
+     - uses: imjasonh/setup-ko@2c3450ca27f6e6f2b02e72a40f2163c281a1f675 # v0.4
      - name: Run build
        uses: nick-invision/retry@7f8f3d9f0f62fe5925341be21c2e8314fd4f7c7c
        with:
