@@ -40,14 +40,14 @@ require (
 	google.golang.org/genproto v0.0.0-20220407144326-9054f6ed7bac
 	google.golang.org/protobuf v1.28.0
 	gopkg.in/yaml.v2 v2.4.0
-	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
+	gopkg.in/yaml.v3 v3.0.1
 	mvdan.cc/sh/v3 v3.4.3
 )
 
 require (
 	github.com/caarlos0/env/v6 v6.9.1
 	github.com/onsi/ginkgo/v2 v2.1.3
-	sigs.k8s.io/release-utils v0.6.0
+	sigs.k8s.io/release-utils v0.7.1
 )
 
 require (
