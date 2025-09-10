@@ -1,6 +1,6 @@
 module github.com/ossf/scorecard/tools
 
-go 1.19
+go 1.23
 
 require (
 	github.com/golang/mock v1.6.0
@@ -10,7 +10,7 @@ require (
 	github.com/goreleaser/goreleaser v1.18.2
 	github.com/naveensrinivasan/stunning-tribble v0.4.2
 	github.com/onsi/ginkgo/v2 v2.9.5
-	google.golang.org/protobuf v1.30.0
+	google.golang.org/protobuf v1.36.9
 )
 
 require (
