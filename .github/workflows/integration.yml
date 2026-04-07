@@ -61,7 +61,7 @@ jobs:
             go mod download
 
       - name: Run GitLab E2E  #using retry because the GitHub token is being throttled.
-        uses: nick-invision/retry@943e742917ac94714d2f408a0e8320f2d1fcafcd
+        uses: nick-invision/retry@ad984534de44a9489a53aefd81eb77f87c70dc60
         with:
           max_attempts: 3
           retry_on: error
@@ -75,7 +75,7 @@ jobs:
          verbose: true
 
       - name: Run GITHUB_TOKEN E2E  #using retry because the GitHub token is being throttled.
-        uses: nick-invision/retry@943e742917ac94714d2f408a0e8320f2d1fcafcd
+        uses: nick-invision/retry@ad984534de44a9489a53aefd81eb77f87c70dc60
         env:
           GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
